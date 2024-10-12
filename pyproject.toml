@@ -1,0 +1,33 @@
+[project]
+name = "myapp"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [{ name = "Masaki Kobayashi", email = "bayashi.cl@gmail.com" }]
+requires-python = ">=3.12"
+dependencies = ["myapp-invalid", "myapp-pkg", "myapp-utils"]
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "mypy>=1.11.2",
+    "nox>=2024.10.9",
+    "pendulum==2.0",
+    "pytest>=8.3.3",
+    "ruff>=0.6.9",
+]
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[tool.uv.sources]
+myapp-utils = { workspace = true }
+myapp-pkg = { workspace = true }
+myapp-invalid = { workspace = true }
+
+[tool.mypy]
+strict = true
